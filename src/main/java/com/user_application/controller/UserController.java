@@ -18,9 +18,8 @@ public class UserController {
         return userService.createUser(user);
     }
 
-
-    @GetMapping("/{name}")
-    public Utilisateur getUser(@PathVariable String name){
-        return userService.findByName(name);
+    @GetMapping("/{id}")
+    public Utilisateur getUser(@PathVariable Integer id){
+        return userService.findById(id);
     }
 }
