@@ -1,7 +1,7 @@
 package com.user_application.mapper;
 
 import com.user_application.dto.UserDto;
-import com.user_application.entity.Utilisateur;
+import com.user_application.entity.User;
 import com.user_application.utils.Gender;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class UserMapperTest {
 
     @Test
     void testToDto() {
-        Utilisateur user =  new Utilisateur(1, "Nicolas", new Date(812733225000L), "France", "0685478547", Gender.MALE);
+        User user =  new User(1, "Nicolas", new Date(812733225000L), "France", "0685478547", Gender.MALE);
 
         UserDto dto = mapper.toDTO(user);
 
@@ -33,7 +33,7 @@ public class UserMapperTest {
     void testToEntity() {
         UserDto userDto = new UserDto(1, "Nicolas", new Date(812733225000L), "France", "0685478547", Gender.MALE);
 
-        Utilisateur  user = mapper.toEntity(userDto);
+        User user = mapper.toEntity(userDto);
 
         assertNotNull(user);
         assertEquals("Nicolas", user.getName());

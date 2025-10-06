@@ -1,7 +1,7 @@
 package com.user_application.service;
 
 import com.user_application.dto.UserDto;
-import com.user_application.entity.Utilisateur;
+import com.user_application.entity.User;
 import com.user_application.mapper.UserMapper;
 import com.user_application.repository.UserRepository;
 import com.user_application.utils.Gender;
@@ -40,7 +40,7 @@ public class UserServiceTest {
         dto.setCountry("France");
         dto.setBirthdate(new Date(1015252765000L));
 
-        Utilisateur savedUser = new Utilisateur();
+        User savedUser = new User();
         savedUser.setId(1);
         savedUser.setName(dto.getName());
         savedUser.setPhone(dto.getPhone());
