@@ -15,12 +15,12 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDto {
     private Integer id;
-    @NotBlank(message = "Name is required.")
+    @NotBlank(message = "Name is required")
     private String name;
-    @NotNull(message = "Birth date is required and must be in the past.")
+    @NotNull(message = "Birthdate is required and must be in the past")
     @Past
-    private Date birthDate;
-    @NotBlank(message = "Country is required.")
+    private Date birthdate;
+    @NotBlank(message = "Country is required")
     private String country;
     private String phone;
     private Gender gender;

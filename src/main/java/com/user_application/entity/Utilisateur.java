@@ -20,7 +20,7 @@ public class Utilisateur {
 
     private String name;
 
-    private Date birthDate;
+    private Date birthdate;
 
     private String country;
 

@@ -5,18 +5,13 @@ import com.user_application.entity.Utilisateur;
 import com.user_application.mapper.UserMapper;
 import com.user_application.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class UserService {
-    private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserMapper userMapper;
 
     @Autowired
@@ -34,7 +29,7 @@ public class UserService {
     }
 
     public UserDto createUser(UserDto userDto){
-        boolean isOver18 = new Date().getTime() - userDto.getBirthDate().getTime() >= 18L * 365 * 24 * 60 * 60 * 1000;
+        boolean isOver18 = new Date().getTime() - userDto.getBirthdate().getTime() >= 18L * 365 * 24 * 60 * 60 * 1000;
         if (userDto.getCountry().equals("France") && isOver18) {
             Utilisateur user = userMapper.toEntity(userDto);
             return userMapper.toDTO(userRepository.save(user));
