@@ -4,6 +4,7 @@ import com.user_application.dto.UserDto;
 import com.user_application.entity.Utilisateur;
 import com.user_application.mapper.UserMapper;
 import com.user_application.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ public class UserService {
     }
 
     public UserDto findById(Integer id){
-        return userMapper.toDTO(userRepository.findById(id).orElse(null));
+        Utilisateur user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User with id [" + id + "] not found."));
+        return userMapper.toDTO(user);
     }
 
     public UserDto createUser(UserDto userDto){
@@ -36,10 +39,7 @@ public class UserService {
             Utilisateur user = userMapper.toEntity(userDto);
             return userMapper.toDTO(userRepository.save(user));
         } else {
-            // denied
-            return null;
+            throw new IllegalArgumentException("Only adult French residents are allowed to create an account.");
         }
-
-
     }
 }

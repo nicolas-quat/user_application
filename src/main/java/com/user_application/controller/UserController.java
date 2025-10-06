@@ -1,11 +1,13 @@
 package com.user_application.controller;
 
 import com.user_application.dto.UserDto;
-import com.user_application.entity.Utilisateur;
 import com.user_application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 
 @RestController
@@ -15,12 +17,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public UserDto createUser(@RequestBody UserDto userDto){
-        return userService.createUser(userDto);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+        UserDto userCreated = userService.createUser(userDto);
+        return new ResponseEntity<>(userCreated, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable Integer id){
-        return userService.findById(id);
+    public ResponseEntity<UserDto> getUser(@PathVariable Integer id){
+        UserDto userDto = userService.findById(id);
+        return ResponseEntity.ok(userDto);
     }
 }
