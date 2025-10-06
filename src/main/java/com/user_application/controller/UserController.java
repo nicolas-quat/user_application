@@ -2,12 +2,11 @@ package com.user_application.controller;
 
 import com.user_application.dto.UserDto;
 import com.user_application.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @RestController
@@ -17,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
         UserDto userCreated = userService.createUser(userDto);
         return new ResponseEntity<>(userCreated, HttpStatus.CREATED);
     }

@@ -1,6 +1,9 @@
 package com.user_application.dto;
 
 import com.user_application.utils.Gender;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +15,12 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDto {
     private Integer id;
+    @NotBlank(message = "Name is required.")
     private String name;
+    @NotNull(message = "Birth date is required and must be in the past.")
+    @Past
     private Date birthDate;
+    @NotBlank(message = "Country is required.")
     private String country;
     private String phone;
     private Gender gender;
